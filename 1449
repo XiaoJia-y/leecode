@@ -1,0 +1,16 @@
+ass Soulution(object):
+    def LargesNumber(self):
+        cost = list(map(int, input().split()))
+        target = int(input())
+        dp = [0] + [float('-inf')] * (target)
+        for k, v in enumerate(cost, 1):
+            for x in range(v, target + 1):
+                dp[x] = max(dp[x], dp[x - v] * 10 + k, dp[x - v] + k * 10 ** len(list(str(dp[x - v]))))
+        if dp[-1] == '-inf':
+            return '0'
+        dp[-1] = dp[-1] // 10
+        return str(dp[-1])
+             
+if __name__ == "__main__":
+    s = Soulution()
+    print(s.LargesNumber())
